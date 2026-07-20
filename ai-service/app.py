@@ -1,9 +1,12 @@
 from fastapi import FastAPI
+from routes.evidence import router as evidence_router
 
 app = FastAPI(
     title="Digital Evidence Locker AI Service",
     version="1.0.0"
 )
+
+app.include_router(evidence_router)
 
 @app.get("/")
 def home():

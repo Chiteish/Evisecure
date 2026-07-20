@@ -17,3 +17,17 @@ This module performs AI-based analysis on digital evidence.
 - FastAPI
 - OpenCV
 - Ultralytics YOLOv8
+
+Day 2
+
+✓ Object Detection Module
+
+Features
+
+• Upload Image
+
+• Detect Objects
+
+• Save Detection Result
+
+• Return JSON
