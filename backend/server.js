@@ -1,13 +1,15 @@
 // 
+const authRoutes = require("./routes/authRoutes");
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
 const connectDB = require("./config/db");
 
+
 // Load environment variables
 dotenv.config();
-console.log("MONGO_URI:", process.env.MONGO_URI);
+
 
 // Connect Database
 connectDB();
@@ -17,6 +19,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
