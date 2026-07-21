@@ -26,9 +26,12 @@ def detect_evidence_objects(image_path: str, output_path: str):
             label = model.names[class_id]
             confidence = float(box.conf[0])
             
+            coords = [int(x) for x in box.xyxy[0].tolist()]
+            
             detected_items.append({
                 "class": label,
-                "confidence": round(confidence, 4)
+                "confidence": round(confidence, 4),
+                "bbox": coords
             })
             
     return detected_items
