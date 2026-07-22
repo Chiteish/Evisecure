@@ -1,0 +1,54 @@
+[
+    {
+        "case_id": "CASE-001",
+        "title": "Knife Robbery",
+        "objects": [
+            "person",
+            "knife",
+            "motorcycle"
+        ],
+        "location": "Chennai",
+        "date": "2026-07-10"
+    },
+    {
+        "case_id": "CASE-002",
+        "title": "Bus Accident",
+        "objects": [
+            "bus",
+            "person",
+            "stop sign"
+        ],
+        "location": "Coimbatore",
+        "date": "2026-07-12"
+    },
+    {
+        "case_id": "CASE-003",
+        "title": "Vehicle Theft",
+        "objects": [
+            "car",
+            "person"
+        ],
+        "location": "Madurai",
+        "date": "2026-07-14"
+    },
+    {
+        "case_id": "CASE-004",
+        "title": "Hit and Run",
+        "objects": [
+            "car",
+            "bus",
+            "person"
+        ],
+        "location": "Salem",
+        "date": "2026-07-15"
+    },
+    {
+        "case_id": "CASE-005",
+        "title": "Street Fight",
+        "objects": [
+            "person"
+        ],
+        "location": "Trichy",
+        "date": "2026-07-18"
+    }
+]
