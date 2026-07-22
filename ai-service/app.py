@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from routes.evidence import router as evidence_router
 from routes import tamper
+from routes import verify
 
 app = FastAPI(
     title="Digital Evidence Locker AI Service",
@@ -9,6 +10,7 @@ app = FastAPI(
 
 app.include_router(evidence_router)
 app.include_router(tamper.router)
+app.include_router(verify.router)
 
 @app.get("/")
 def home():
