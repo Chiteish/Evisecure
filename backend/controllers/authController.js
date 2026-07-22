@@ -2,53 +2,26 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// ---------------- REGISTER ----------------
-const registerUser = async (req, res) => {
+// ==========================
+// Login User
+// ==========================
+const loginUser = async (req, res) => {
     try {
-        const { name, email, password, role } = req.body;
+        const { employeeId, password } = req.body;
 
-        const existingUser = await User.findOne({ email });
-
-        if (existingUser) {
+        // Check if all fields are provided
+        if (!employeeId || !password) {
             return res.status(400).json({
-                message: "User already exists"
+                message: "Employee ID and Password are required."
             });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const user = await User.create({
-            name,
-            email,
-            password: hashedPassword,
-            role
-        });
-
-        res.status(201).json({
-            message: "User Registered Successfully",
-            user
-        });
-
-    } catch (error) {
-        res.status(500).json({
-            message: error.message
-        });
-    }
-};
-
-// ---------------- LOGIN ----------------
-const loginUser = async (req, res) => {
-
-    try {
-
-        const { email, password } = req.body;
-
-        // Find user
-        const user = await User.findOne({ email });
+        // Find user by Employee ID
+        const user = await User.findOne({ employeeId });
 
         if (!user) {
-            return res.status(404).json({
-                message: "User not found"
+            return res.status(401).json({
+                message: "Invalid Employee ID or Password."
             });
         }
 
@@ -57,7 +30,7 @@ const loginUser = async (req, res) => {
 
         if (!isMatch) {
             return res.status(401).json({
-                message: "Invalid Password"
+                message: "Invalid Employee ID or Password."
             });
         }
 
@@ -78,6 +51,7 @@ const loginUser = async (req, res) => {
             token,
             user: {
                 id: user._id,
+                employeeId: user.employeeId,
                 name: user.name,
                 email: user.email,
                 role: user.role
@@ -85,16 +59,14 @@ const loginUser = async (req, res) => {
         });
 
     } catch (error) {
+        console.error(error);
 
         res.status(500).json({
-            message: error.message
+            message: "Server Error"
         });
-
     }
-
 };
 
 module.exports = {
-    registerUser,
     loginUser
 };
