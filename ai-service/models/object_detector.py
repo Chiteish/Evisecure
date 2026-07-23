@@ -21,10 +21,14 @@ def detect_evidence_objects(image_path: str, output_path: str):
         result.save(filename=output_path)
         
         # Parse individual box coordinates and classes
+        CONFIDENCE_THRESHOLD = 0.40
         for box in result.boxes:
+            confidence = float(box.conf[0])
+            
+            if confidence < CONFIDENCE_THRESHOLD:
+                continue
             class_id = int(box.cls[0])
             label = model.names[class_id]
-            confidence = float(box.conf[0])
             
             coords = [int(x) for x in box.xyxy[0].tolist()]
             

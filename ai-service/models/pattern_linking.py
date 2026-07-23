@@ -30,19 +30,25 @@ def find_similar_cases(detected_objects):
             case["objects"]
         )
 
-        results.append({
+        if similarity >= 40:
 
-            "case_id": case["case_id"],
+            results.append({
 
-            "title": case["title"],
+                "case_id": case["case_id"],
 
-            "similarity": similarity
+                "title": case["title"],
 
-        })
+                "location": case["location"],
+
+                "date": case["date"],
+
+                "similarity": similarity
+
+            })
 
     results.sort(
         key=lambda x: x["similarity"],
         reverse=True
     )
 
-    return results[:3]
+    return results

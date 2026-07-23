@@ -3,16 +3,21 @@ from routes.evidence import router as evidence_router
 from routes import tamper
 from routes import verify
 from routes import pattern
+from routes import investigation
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(
     title="Digital Evidence Locker AI Service",
     version="1.0.0"
 )
 
+app.mount("/outputs", StaticFiles(directory="outputs"), name="outputs")
+
 app.include_router(evidence_router)
 app.include_router(tamper.router)
 app.include_router(verify.router)
 app.include_router(pattern.router)
+app.include_router(investigation.router)
 
 @app.get("/")
 def home():

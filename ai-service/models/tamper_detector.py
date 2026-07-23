@@ -23,12 +23,12 @@ def perform_ela(image_path, output_path, quality=90):
     ela_visual = enhancer.enhance(12.0)
     ela_visual.save(output_path)
     
-    confidence = min(round((mean_diff / 30.0) * 100, 2), 100.0)
-    tampered = confidence > 15.0  # Threshold based on average pixel variance
+    confidence = float(min(round((mean_diff / 30.0) * 100, 2), 100.0))
+    tampered = bool(confidence > 15.0)  # Threshold based on average pixel variance
     
     return {
         "tampered": tampered,
         "confidence": confidence,
-        "mean_difference": round(float(mean_diff), 2),
+        "mean_difference": float(round(float(mean_diff), 2)),
         "ela_image": output_path
     }
