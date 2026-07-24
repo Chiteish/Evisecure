@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-50: #f0f7ff;
+  --color-brand-100: #e0effe;
+  --color-brand-200: #bae0fd;
+  --color-brand-300: #7cc8fc;
+  --color-brand-400: #36b0f8;
+  --color-brand-500: #0c94e8;
+  --color-brand-600: #0276c7;
+  --color-brand-700: #035ea2;
+  --color-brand-800: #075085;
+  --color-brand-900: #0c436e;
+  --color-brand-950: #082b49;
+
+  --color-navy-800: #0f172a;
+  --color-navy-900: #0b1120;
+  --color-navy-950: #060a12;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased font-sans dark:bg-navy-950 dark:text-slate-100 transition-colors duration-200;
+}
+
+/* Glassmorphism & custom utility classes */
+.glass-card {
+  @apply bg-white/80 dark:bg-navy-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md transition-all;
+}
+
+.glass-nav {
+  @apply bg-white/70 dark:bg-navy-950/70 backdrop-blur-lg border-b border-slate-200/60 dark:border-slate-800/60;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
+}
