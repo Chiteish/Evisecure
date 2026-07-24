@@ -7,6 +7,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const protectedRoutes = require("./routes/protectedRoutes");
 const caseRoutes = require("./routes/caseRoutes");
 const evidenceRoutes = require("./routes/evidenceRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api", protectedRoutes);
 app.use("/api/cases", caseRoutes);
 app.use("/api/evidence", evidenceRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 const PORT = process.env.PORT || 5000;
 
